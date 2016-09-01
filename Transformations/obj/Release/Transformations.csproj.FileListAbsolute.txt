@@ -1,0 +1,4 @@
+E:\Трансформация на координати\Transformations\bin\Release\CoordinateTransformations.dll
+E:\Трансформация на координати\Transformations\bin\Release\CoordinateTransformations.pdb
+E:\Трансформация на координати\Transformations\obj\Release\CoordinateTransformations.dll
+E:\Трансформация на координати\Transformations\obj\Release\CoordinateTransformations.pdb

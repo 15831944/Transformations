@@ -1,0 +1,26 @@
+﻿<Window x:Class="Seo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Хелмертова трансформация" 
+        Height="Auto" Width="Auto" IsEnabled="True" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" FontFamily="Verdana" SizeToContent="WidthAndHeight">
+    <Grid Margin="0" UseLayoutRounding="False" Width="Auto" Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="850" MinWidth="850" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="1" Grid.Column="0" Height="500" HorizontalAlignment="Left" Margin="5,5,0,0" Name="Log" VerticalAlignment="Top" Width="800" IsReadOnly="True" FontFamily="Courier New" VerticalScrollBarVisibility="Visible" />
+        <Menu Grid.Row="0" Grid.Column="0" Height="23" Name="MainMenu"  HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Margin="5">
+            <MenuItem Header="Файл" Width="50" FontSize="12" FontFamily="Verdana">
+                <MenuItem Name="FileButton" ToolTip="Отваряне на файл с координати на точки"  Header="Отваряне на файл" Click="OpenFile" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <MenuItem Name="TransformButton" ToolTip="Трансформация на координати" Header="Трансформация" Click="Transform" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
+                <MenuItem Name="SaveButton" ToolTip="Записване на файл с координати на твърдия диск или друго устройство" Header="Запис на файл" Click="SaveFile" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
+            </MenuItem>
+            <MenuItem FontFamily="Verdana" FontSize="12" Header="Помощ">
+                <MenuItem Name="AboutButton" ToolTip="Информация за програмата" Header="За програмата" Click="ViewHelp" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>

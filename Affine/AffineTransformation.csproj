@@ -75,9 +75,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CoordinateTransformations">
-      <HintPath>..\Transformations\bin\Release\CoordinateTransformations.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -178,6 +175,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Transform.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Transformations\Transformations.csproj">
+      <Project>{d29a4f22-56ec-4469-8d6e-22d31eda66fb}</Project>
+      <Name>Transformations</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

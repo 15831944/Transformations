@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Seo.Properties {
+namespace AffineTransformations.Properties {
     using System;
     
     

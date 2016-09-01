@@ -1,8 +1,8 @@
-﻿namespace Seo.Databases
+﻿namespace AffineTransformations.Databases
 {
     using System.Collections.Generic;
     using CoordinateTransformations.Contracts;
-    
+
     internal class DefaultDatabase
     {
         private static readonly DefaultDatabase instance = new DefaultDatabase();
@@ -14,10 +14,7 @@
 
         public ICollection<IPoint> Points
         {
-            get
-            {
-                return this.points;
-            }
+            get { return this.points; }
         }
 
         public static DefaultDatabase GetInstance()

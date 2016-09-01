@@ -5,9 +5,9 @@ using System.Text;
 using System.Globalization;
 using System.Windows;
 using System.Linq;
-using Seo.Geometry.Point;
+using AffineTransformations.Geometry.Point;
 
-namespace Seo.Transformations
+namespace AffineTransformations.Transformations
 {
     class HelmertTransformation
     {

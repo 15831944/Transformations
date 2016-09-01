@@ -204,7 +204,13 @@
   <data name="UxMenuItemTransformCoordinatesToolTip" xml:space="preserve">
     <value>Трансформиране на координати</value>
   </data>
-  <data name="WindowTitle" xml:space="preserve">
+  <data name="UxWindowTitle" xml:space="preserve">
     <value>Афинна трансформация</value>
+  </data>
+  <data name="AuthorName" xml:space="preserve">
+    <value>Nanko Geshkov</value>
+  </data>
+  <data name="uxMenuCategoryAboutHeader" xml:space="preserve">
+    <value>За програмата</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿namespace Seo
+﻿namespace AffineTransformations
 {
     using System;
     using System.Linq;

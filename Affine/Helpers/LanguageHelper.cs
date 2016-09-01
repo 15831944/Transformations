@@ -1,4 +1,4 @@
-﻿namespace Seo.Helpers
+﻿namespace AffineTransformations.Helpers
 {
     using System.Globalization;
 

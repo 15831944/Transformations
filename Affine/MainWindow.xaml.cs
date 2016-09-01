@@ -1,4 +1,4 @@
-﻿namespace Seo
+﻿namespace AffineTransformations
 {
     using System;
     using System.Globalization;
@@ -40,7 +40,8 @@
                 {
                     if (File.Exists(openFileDialog.FileName) == false)
                     {
-                        throw new FileNotFoundException(string.Format(Properties.Resources.ExceptionFileNotFound, openFileDialog.FileName));
+                        throw new FileNotFoundException(string.Format(Properties.Resources.ExceptionFileNotFound,
+                            openFileDialog.FileName));
                     }
 
                     DefaultDatabase.GetInstance().Points.Clear();
@@ -69,15 +70,18 @@
 
                                     break;
                                 default:
-                                    throw new ArgumentException(string.Format(Properties.Resources.ExceptionInvalidRowData, currentRowNumber));
+                                    throw new ArgumentException(
+                                        string.Format(Properties.Resources.ExceptionInvalidRowData, currentRowNumber));
                             }
 
                             currentRowNumber++;
                         }
                     }
 
-                    int controlPointsCount = DefaultDatabase.GetInstance().Points.Count(p => p.PointType == PointType.ControlPoint);
-                    int observationPointsCount = DefaultDatabase.GetInstance().Points.Count(p => p.PointType == PointType.ObservationPoint);
+                    int controlPointsCount =
+                        DefaultDatabase.GetInstance().Points.Count(p => p.PointType == PointType.ControlPoint);
+                    int observationPointsCount =
+                        DefaultDatabase.GetInstance().Points.Count(p => p.PointType == PointType.ObservationPoint);
                     int allPointsCount = DefaultDatabase.GetInstance().Points.Count;
 
                     string message = string.Format(
@@ -87,14 +91,16 @@
                         observationPointsCount,
                         Environment.NewLine);
 
-                    MessageBox.Show(message, Properties.Resources.MessageBoxTitleInformation, MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(message, Properties.Resources.MessageBoxTitleInformation, MessageBoxButton.OK,
+                        MessageBoxImage.Information);
 
                     this.transformButton.IsEnabled = true;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Properties.Resources.MessageBoxTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, Properties.Resources.MessageBoxTitleError, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -104,12 +110,14 @@
             {
                 this.uxTextBoxLog.Clear();
 
-                AffineTransformation affineTransformation = new AffineTransformation(DefaultDatabase.GetInstance().Points);
+                AffineTransformation affineTransformation =
+                    new AffineTransformation(DefaultDatabase.GetInstance().Points);
                 affineTransformation.Transform();
 
                 this.outputLog = LogHelper.CreateLog(affineTransformation);
 
-                MessageBox.Show("Успешна трансформация на координати!", Properties.Resources.MessageBoxTitleInformation, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Успешна трансформация на координати!", Properties.Resources.MessageBoxTitleInformation,
+                    MessageBoxButton.OK, MessageBoxImage.Information);
 
                 if (this.displayLogCheckBox.IsChecked == true)
                 {
@@ -120,7 +128,8 @@
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace, Properties.Resources.MessageBoxTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.StackTrace, Properties.Resources.MessageBoxTitleError, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -145,7 +154,8 @@
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Properties.Resources.MessageBoxTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, Properties.Resources.MessageBoxTitleError, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
 
@@ -158,7 +168,8 @@
             output.AppendLine();
             output.AppendFormat(Properties.Resources.ProductVersionTitle, this.productVersion);
             output.AppendLine();
-            output.AppendFormat(Properties.Resources.ProductDescriptionTitle, Properties.Resources.ProductDescriptionValue);
+            output.AppendFormat(Properties.Resources.ProductDescriptionTitle,
+                Properties.Resources.ProductDescriptionValue);
             output.AppendLine();
             output.AppendFormat(Properties.Resources.AuthorNameTitle, Properties.Resources.AuthorNameValue);
             output.AppendLine();

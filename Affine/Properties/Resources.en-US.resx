@@ -198,13 +198,19 @@
   <data name="UxMenuItemTransformCoordinatesToolTip" xml:space="preserve">
     <value>Affine Transformation</value>
   </data>
-  <data name="WindowTitle" xml:space="preserve">
+  <data name="UxWindowTitle" xml:space="preserve">
     <value>Affine Transformation</value>
   </data>
   <data name="OpenFileDialogFilter" xml:space="preserve">
     <value>Text Files|*.txt</value>
   </data>
   <data name="UxMenuItemButtonAboutHeader" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AuthorNameValue" xml:space="preserve">
+    <value>Nanko Geshkov</value>
+  </data>
+  <data name="UxMenuItemAboutHeader" xml:space="preserve">
     <value>About</value>
   </data>
 </root>

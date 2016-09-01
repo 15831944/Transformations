@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Seo.Geometry.Point
+namespace AffineTransformations.Geometry.Point
 {
     class XYPoint
     {

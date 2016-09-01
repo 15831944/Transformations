@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace Seo
+namespace AffineTransformations
 {
     /// <summary>
     /// Interaction logic for App.xaml

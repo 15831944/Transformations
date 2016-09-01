@@ -8,7 +8,7 @@
     <ProjectGuid>{D3075717-9F58-4538-857C-9BB4A8D02BF2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Seo</RootNamespace>
+    <RootNamespace>AffineTransformations</RootNamespace>
     <AssemblyName>Афинна трансформация</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>

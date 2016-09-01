@@ -1,29 +1,42 @@
-﻿<Window x:Class="Seo.MainWindow"
+﻿<Window x:Class="AffineTransformations.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:properties="clr-namespace:Seo.Properties"
-        Title="{x:Static properties:Resources.WindowTitle}" IsEnabled="True" WindowStartupLocation="CenterScreen" FontFamily="Verdana" SizeToContent="WidthAndHeight" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinWidth="800" MinHeight="550" Icon="Transform.ico" ResizeMode="CanMinimize">
+        xmlns:properties="clr-namespace:AffineTransformations.Properties"
+        Title="{x:Static properties:Resources.UxWindowTitle}" IsEnabled="True" WindowStartupLocation="CenterScreen"
+        FontFamily="Verdana" SizeToContent="WidthAndHeight" HorizontalContentAlignment="Stretch"
+        VerticalContentAlignment="Stretch" MinWidth="800" MinHeight="550" Icon="Transform.ico" ResizeMode="CanMinimize">
     <Grid Margin="0" UseLayoutRounding="False" Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" MaxHeight="30" MinHeight="30"/>
-            <RowDefinition Height="600" MinHeight="550"/>
+            <RowDefinition Height="30" MaxHeight="30" MinHeight="30" />
+            <RowDefinition Height="600" MinHeight="550" />
         </Grid.RowDefinitions>
-        <TextBox Grid.Column="0" Height="585" Margin="5,5,5,0" Name="uxTextBoxLog" IsReadOnly="True" FontFamily="Courier New" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Width="800" Grid.Row="1" VerticalAlignment="Top" Padding="5" />
-        <Menu Grid.Row="0" Grid.Column="0" Height="23" Name="MainMenu"  HorizontalAlignment="Left" VerticalAlignment="Top" Background="White" Margin="5,5,0,0">
+        <TextBox Grid.Column="0" Height="585" Margin="5,5,5,0" Name="uxTextBoxLog" IsReadOnly="True"
+                 FontFamily="Courier New" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Stretch"
+                 VerticalContentAlignment="Stretch" Width="800" Grid.Row="1" VerticalAlignment="Top" Padding="5" />
+        <Menu Grid.Row="0" Grid.Column="0" Height="23" Name="MainMenu" HorizontalAlignment="Left"
+              VerticalAlignment="Top" Background="White" Margin="5,5,0,0">
             <MenuItem Header="{x:Static properties:Resources.UxMenuCategoryFile}">
-                <MenuItem Name="openFileButton" ToolTip="{x:Static properties:Resources.UxMenuItemOpenFileToolTip}"  Header="{x:Static properties:Resources.UxMenuItemOpenFileHeader}" Click="OpenFile" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <MenuItem Name="transformButton" ToolTip="{x:Static properties:Resources.UxMenuItemTransformCoordinatesToolTip}" Header="{x:Static properties:Resources.UxMenuItemTransformCoordinatesHeader}" Click="Transform" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
-                <MenuItem Name="uxButtonSaveFile" ToolTip="{x:Static properties:Resources.UxMenuItemSaveFileToolTip}" Header="{x:Static properties:Resources.UxMenuItemSaveFileHeader}" Click="SaveFile" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
+                <MenuItem Name="openFileButton" ToolTip="{x:Static properties:Resources.UxMenuItemOpenFileToolTip}"
+                          Header="{x:Static properties:Resources.UxMenuItemOpenFileHeader}" Click="OpenFile"
+                          HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <MenuItem Name="transformButton"
+                          ToolTip="{x:Static properties:Resources.UxMenuItemTransformCoordinatesToolTip}"
+                          Header="{x:Static properties:Resources.UxMenuItemTransformCoordinatesHeader}"
+                          Click="Transform" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
+                <MenuItem Name="uxButtonSaveFile" ToolTip="{x:Static properties:Resources.UxMenuItemSaveFileToolTip}"
+                          Header="{x:Static properties:Resources.UxMenuItemSaveFileHeader}" Click="SaveFile"
+                          HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" />
             </MenuItem>
             <MenuItem Header="{x:Static properties:Resources.UxMenuCategoryEdit}">
-                <MenuItem Name="displayLogCheckBox" Header="{x:Static properties:Resources.UxMenuItemLogHeader}" IsCheckable="true" IsChecked="true"></MenuItem>
+                <MenuItem Name="displayLogCheckBox" Header="{x:Static properties:Resources.UxMenuItemLogHeader}"
+                          IsCheckable="true" IsChecked="true" />
             </MenuItem>
             <MenuItem Header="{x:Static properties:Resources.UxMenuCategoryHelp}">
-                <MenuItem Name="aboutButton" 
-                          ToolTip="{x:Static properties:Resources.UxMenuItemAboutToolTip}" 
-                          Header="{x:Static properties:Resources.UxMenuItemButtonAboutHeader}" 
-                          Click="ViewHelp" 
-                          HorizontalAlignment="Left" 
+                <MenuItem Name="aboutButton"
+                          ToolTip="{x:Static properties:Resources.UxMenuItemAboutToolTip}"
+                          Header="{x:Static properties:Resources.UxMenuItemButtonAboutHeader}"
+                          Click="ViewHelp"
+                          HorizontalAlignment="Left"
                           VerticalAlignment="Center" />
             </MenuItem>
         </Menu>

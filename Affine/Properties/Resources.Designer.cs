@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Seo.Properties {
+namespace AffineTransformations.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Seo.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Seo.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AffineTransformations.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -75,6 +75,15 @@ namespace Seo.Properties {
         public static string AuthorHomepageValue {
             get {
                 return ResourceManager.GetString("AuthorHomepageValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to инж. Н. Гешков.
+        /// </summary>
+        public static string AuthorName {
+            get {
+                return ResourceManager.GetString("AuthorName", resourceCulture);
             }
         }
         
@@ -205,6 +214,15 @@ namespace Seo.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to За програмата.
+        /// </summary>
+        public static string uxMenuCategoryAboutHeader {
+            get {
+                return ResourceManager.GetString("uxMenuCategoryAboutHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Редактиране .
         /// </summary>
         public static string UxMenuCategoryEdit {
@@ -324,9 +342,9 @@ namespace Seo.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Афинна трансформация.
         /// </summary>
-        public static string WindowTitle {
+        public static string UxWindowTitle {
             get {
-                return ResourceManager.GetString("WindowTitle", resourceCulture);
+                return ResourceManager.GetString("UxWindowTitle", resourceCulture);
             }
         }
     }

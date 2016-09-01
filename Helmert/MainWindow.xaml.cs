@@ -3,9 +3,9 @@ using System.Text;
 using System.Windows;
 using Microsoft.Win32;
 using System.IO;
-using Seo.Transformations;
+using AffineTransformations.Transformations;
 
-namespace Seo
+namespace AffineTransformations
 {
     public partial class MainWindow : Window
     {

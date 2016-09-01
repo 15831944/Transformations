@@ -1,33 +1,64 @@
 ﻿namespace CoordinateTransformations.Data
 {
-    using System;
-    using System.Linq;
-    using CoordinateTransformations.Data.Enums;
-    using CoordinateTransformations.Data.Geometry;
+    using Enums;
+    using Contracts;
+    using Geometry.Point;
 
-    public class Point
+    public class Point : IPoint
     {
+        private readonly string pointName;
         private readonly PointType pointType;
         private readonly Point2D sourcePoint;
         private readonly Point2D targetPoint;
-        private readonly string pointName;
         private double offsetX;
         private double offsetY;
 
         public Point(string pointName, Point2D sourcePoint)
         {
             this.pointName = pointName;
+            this.pointType = PointType.ObservationPoint;
             this.sourcePoint = new Point2D(sourcePoint.PositionX, sourcePoint.PositionY);
             this.targetPoint = new Point2D(0.0, 0.0);
-            this.pointType = PointType.NewPoint;
         }
 
         public Point(string pointName, Point2D sourcePoint, Point2D targetPoint)
         {
             this.pointName = pointName;
+            this.pointType = PointType.ControlPoint;
             this.sourcePoint = new Point2D(sourcePoint.PositionX, sourcePoint.PositionY);
             this.targetPoint = new Point2D(targetPoint.PositionX, targetPoint.PositionY);
-            this.pointType = PointType.CommonPoint;
+        }
+
+        public string PointName
+        {
+            get
+            {
+                return this.pointName;
+            }
+        }
+
+        public PointType PointType
+        {
+            get
+            {
+                return this.pointType;
+            }
+        }
+
+        public Point2D SourcePoint
+        {
+            get
+            {
+                return this.sourcePoint;
+            }
+        }
+
+        public Point2D TargetPoint
+        {
+            get
+            {
+                return this.targetPoint;
+            }
         }
 
         public double OffsetX
@@ -51,38 +82,6 @@
             set
             {
                 this.offsetY = value;
-            }
-        }
-
-        public PointType PointType
-        {
-            get
-            {
-                return this.pointType;
-            }
-        }
-
-        public string PointName
-        {
-            get
-            {
-                return this.pointName;
-            }
-        }
-
-        public Point2D SourcePoint
-        {
-            get
-            {
-                return this.sourcePoint;
-            }
-        }
-
-        public Point2D TargetPoint
-        {
-            get
-            {
-                return this.targetPoint;
             }
         }
     }

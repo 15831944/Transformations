@@ -94,6 +94,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Databases\DefaultDatabase.cs" />
+    <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Properties\Resources.bg-BG.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -182,6 +184,7 @@
       <Name>Transformations</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

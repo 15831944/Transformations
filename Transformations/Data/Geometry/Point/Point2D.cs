@@ -1,7 +1,5 @@
-﻿namespace CoordinateTransformations.Data.Geometry
+﻿namespace CoordinateTransformations.Data.Geometry.Point
 {
-    using System;
-
     public class Point2D
     {
         private double positionX;

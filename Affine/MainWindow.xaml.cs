@@ -1,7 +1,6 @@
 ﻿namespace Seo
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -10,35 +9,21 @@
     using System.Windows;
     using CoordinateTransformations.Data.Enums;
     using Microsoft.Win32;
-    using Seo.Helpers;
+    using Helpers;
+    using CoordinateTransformations.Data.Geometry.Point;
+    using CoordinateTransformations;
+    using Databases;
 
     public partial class MainWindow : Window
     {
         private string productVersion = "1.1.0";
-        private ICollection<CoordinateTransformations.Data.Point> points;
         private string outputLog = string.Empty;
 
         public MainWindow()
         {
-            this.SetLanguage();
+            LanguageHelper.SetLanguage(CultureInfo.CurrentCulture.Name);
+
             this.InitializeComponent();
-
-            this.points = new List<CoordinateTransformations.Data.Point>();
-        }
-
-        private void SetLanguage()
-        {
-            switch (CultureInfo.CurrentCulture.Name)
-            {
-                case "bg-BG":
-                    Properties.Resources.Culture = new CultureInfo("bg-BG");
-
-                    break;
-                default:
-                    Properties.Resources.Culture = new CultureInfo("en-US");
-
-                    break;
-            }
         }
 
         private void OpenFile(object sender, RoutedEventArgs e)
@@ -58,7 +43,7 @@
                         throw new FileNotFoundException(string.Format(Properties.Resources.ExceptionFileNotFound, openFileDialog.FileName));
                     }
 
-                    this.points.Clear();
+                    DefaultDatabase.GetInstance().Points.Clear();
 
                     using (var reader = new StreamReader(openFileDialog.FileName, Encoding.UTF8))
                     {
@@ -71,16 +56,16 @@
                             switch (line.Length)
                             {
                                 case 3:
-                                    this.points.Add(new CoordinateTransformations.Data.Point(
+                                    DefaultDatabase.GetInstance().Points.Add(new CoordinateTransformations.Data.Point(
                                         line[0],
-                                        new CoordinateTransformations.Data.Geometry.Point2D(double.Parse(line[1]), double.Parse(line[2]))));
+                                        new Point2D(double.Parse(line[1]), double.Parse(line[2]))));
 
                                     break;
                                 case 5:
-                                    this.points.Add(new CoordinateTransformations.Data.Point(
+                                    DefaultDatabase.GetInstance().Points.Add(new CoordinateTransformations.Data.Point(
                                         line[0],
-                                        new CoordinateTransformations.Data.Geometry.Point2D(double.Parse(line[1]), double.Parse(line[2])),
-                                        new CoordinateTransformations.Data.Geometry.Point2D(double.Parse(line[3]), double.Parse(line[4]))));
+                                        new Point2D(double.Parse(line[1]), double.Parse(line[2])),
+                                        new Point2D(double.Parse(line[3]), double.Parse(line[4]))));
 
                                     break;
                                 default:
@@ -91,15 +76,15 @@
                         }
                     }
 
-                    int commonPointsCount = this.points.Where(p => p.PointType == PointType.CommonPoint).Count();
-                    int newPointsCount = this.points.Where(p => p.PointType == PointType.NewPoint).Count();
-                    int allPointsCount = this.points.Count;
+                    int controlPointsCount = DefaultDatabase.GetInstance().Points.Count(p => p.PointType == PointType.ControlPoint);
+                    int observationPointsCount = DefaultDatabase.GetInstance().Points.Count(p => p.PointType == PointType.ObservationPoint);
+                    int allPointsCount = DefaultDatabase.GetInstance().Points.Count;
 
                     string message = string.Format(
                         Properties.Resources.OpenFileDialogMessageSuccess,
                         allPointsCount,
-                        commonPointsCount,
-                        newPointsCount,
+                        controlPointsCount,
+                        observationPointsCount,
                         Environment.NewLine);
 
                     MessageBox.Show(message, Properties.Resources.MessageBoxTitleInformation, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -115,28 +100,28 @@
 
         private void Transform(object sender, RoutedEventArgs e)
         {
-            this.uxTextBoxLog.Clear();
-
             try
             {
-                CoordinateTransformations.AffineTransformation affineTransformation = new CoordinateTransformations.AffineTransformation(this.points);
-                affineTransformation.TransformCoordinates();
+                this.uxTextBoxLog.Clear();
+
+                AffineTransformation affineTransformation = new AffineTransformation(DefaultDatabase.GetInstance().Points);
+                affineTransformation.Transform();
 
                 this.outputLog = LogHelper.CreateLog(affineTransformation);
+
+                MessageBox.Show("Успешна трансформация на координати!", Properties.Resources.MessageBoxTitleInformation, MessageBoxButton.OK, MessageBoxImage.Information);
+
+                if (this.displayLogCheckBox.IsChecked == true)
+                {
+                    this.uxTextBoxLog.Text = this.outputLog;
+                }
+
+                this.uxButtonSaveFile.IsEnabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Properties.Resources.MessageBoxTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.StackTrace, Properties.Resources.MessageBoxTitleError, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            MessageBox.Show("Успешна трансформация на координати!", Properties.Resources.MessageBoxTitleInformation, MessageBoxButton.OK, MessageBoxImage.Information);
-
-            if (this.displayLogCheckBox.IsChecked == true)
-            {
-                this.uxTextBoxLog.Text = this.outputLog;
-            }
-
-            this.uxButtonSaveFile.IsEnabled = true;
         }
 
         private void SaveFile(object sender, RoutedEventArgs e)

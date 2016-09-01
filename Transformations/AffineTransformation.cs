@@ -3,12 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using CoordinateTransformations.Data;
-    using CoordinateTransformations.Data.Enums;
+    using Data.Enums;
+    using Contracts;
 
     public class AffineTransformation
     {
-        private readonly ICollection<CoordinateTransformations.Data.Point> points;
+        private readonly ICollection<IPoint> points;
 
         private double a0;
         private double a1;
@@ -17,9 +17,16 @@
         private double b1;
         private double b2;
 
-        public AffineTransformation(ICollection<CoordinateTransformations.Data.Point> points)
+        public AffineTransformation(ICollection<IPoint> points)
         {
-            this.points = new List<CoordinateTransformations.Data.Point>(points);
+            int controlPointsCount = points.Count(p => p.PointType == PointType.ControlPoint);
+
+            if (controlPointsCount < AffineTransformation.MinPointsCount)
+            {
+                throw new ArgumentException(string.Format("Броят на общите точки в двете координатни системи [{0}] е по-малък от [{1}]!", controlPointsCount, AffineTransformation.MinPointsCount));
+            }
+
+            this.points = new List<IPoint>(points);
         }
 
         public static int MinPointsCount
@@ -27,16 +34,6 @@
             get
             {
                 return 3;
-            }
-        }
-
-        public int CommonPointsCount
-        {
-            get
-            {
-                int commonPointsCount = this.points.Count(p => p.PointType == PointType.CommonPoint);
-
-                return commonPointsCount;
             }
         }
 
@@ -88,29 +85,24 @@
             }
         }
 
-        public ICollection<Point> Points
+        public ICollection<IPoint> Points
         {
             get
             {
-                return this.points;
+                return new List<IPoint>(this.points);
             }
         }
 
-        public void TransformCoordinates()
+        public void Transform()
         {
-            if (this.CommonPointsCount < AffineTransformation.MinPointsCount)
-            {
-                throw new ArgumentException(string.Format("Броят на общите точки в двете координатни системи [{0}] е по-малък от [{1}]!", this.CommonPointsCount, AffineTransformation.MinPointsCount));
-            }
-
-            double ax1 = this.points.Where(p => p.PointType == PointType.CommonPoint).Average(f => f.SourcePoint.PositionX);
-            double ay1 = this.points.Where(p => p.PointType == PointType.CommonPoint).Average(f => f.SourcePoint.PositionY);
-            double ax2 = this.points.Where(p => p.PointType == PointType.CommonPoint).Average(f => f.TargetPoint.PositionX);
-            double ay2 = this.points.Where(p => p.PointType == PointType.CommonPoint).Average(f => f.TargetPoint.PositionY);
+            double ax1 = this.points.Where(p => p.PointType == PointType.ControlPoint).Average(p => p.SourcePoint.PositionX);
+            double ay1 = this.points.Where(p => p.PointType == PointType.ControlPoint).Average(p => p.SourcePoint.PositionY);
+            double ax2 = this.points.Where(p => p.PointType == PointType.ControlPoint).Average(p => p.TargetPoint.PositionX);
+            double ay2 = this.points.Where(p => p.PointType == PointType.ControlPoint).Average(p => p.TargetPoint.PositionY);
 
             double dx1, dy1, dx2, dy2;
-            double p1 = 0, p2 = 0, p3 = 0, p4 = 0, p5 = 0, p6 = 0, p7 = 0;
-            foreach (var point in this.points.Where(p => p.PointType == PointType.CommonPoint))
+            double p1 = 0.0, p2 = 0.0, p3 = 0.0, p4 = 0.0, p5 = 0.0, p6 = 0.0, p7 = 0.0;
+            foreach (var point in this.points.Where(p => p.PointType == PointType.ControlPoint))
             {
                 dx1 = point.SourcePoint.PositionX - ax1;
                 dy1 = point.SourcePoint.PositionY - ay1;
@@ -145,7 +137,7 @@
 
                 switch (point.PointType)
                 {
-                    case PointType.CommonPoint:
+                    case PointType.ControlPoint:
                         double vx = (point.TargetPoint.PositionX - x) * 1000;
                         double vy = (point.TargetPoint.PositionY - y) * 1000;
 
@@ -153,7 +145,7 @@
                         point.OffsetY = vy;
 
                         break;
-                    case PointType.NewPoint:
+                    case PointType.ObservationPoint:
                         point.TargetPoint.PositionX = x;
                         point.TargetPoint.PositionY = y;
 

@@ -40,8 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AffineTransformation.cs" />
+    <Compile Include="Contracts\IPoint.cs" />
     <Compile Include="Data\Enums\PointType.cs" />
-    <Compile Include="Data\Geometry\Point2D.cs" />
+    <Compile Include="Data\Geometry\Point\Point2D.cs" />
     <Compile Include="Data\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -11,3 +11,5 @@ E:\Трансформация на координати\Helmert\obj\Release\Хе
 E:\Трансформация на координати\Helmert\obj\Release\Хелмертова трансформация.pdb
 C:\Users\h4x0r\Documents\Visual Studio 2013\Projects\Transformations\Helmert\obj\Release\Хелмертова трансформация.exe
 C:\Users\h4x0r\Documents\Visual Studio 2013\Projects\Transformations\Helmert\obj\Release\Хелмертова трансформация.pdb
+D:\n.geshkov\Documents\Transformations\Helmert\obj\Release\Хелмертова трансформация.exe
+D:\n.geshkov\Documents\Transformations\Helmert\obj\Release\Хелмертова трансформация.pdb
